@@ -1,0 +1,91 @@
+<div id="sign-in-button"></div>
+<ion-content *ngIf="showsection=='enterphone'">
+  <ion-row>
+    <ion-col>
+      <div style="display: grid; align-items: center; justify-items: center;">
+        <ion-img src="../../../assets/Enter OTP-pana.png" style="width: 300px;"></ion-img>
+        <p style="text-align: center;">Enter Registered Phone Number<br>will send you the OTP </p>
+      </div>
+    </ion-col>
+    <ion-col>
+      <div style="width: 95%; margin: 0 auto;">
+
+        <ion-item class="remove-pad-start" ion-padding>
+          <ion-label position="floating">Enter Phone Number</ion-label>
+          <ion-input type="number" [(ngModel)]="phonenumber"></ion-input>
+        </ion-item>
+        <div style="margin-top: 20px;">
+          <ion-button class="loginbtn" (click)="sendotp()" color="danger" style="width:100%;" type="button">Send Otp</ion-button>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-content class="ion-text-center" style="margin-top: 40%; " *ngIf="showsection=='otp'">
+
+  <ion-row>
+    <ion-col>
+      <div style="display: grid; align-items: center; justify-items: center;">
+        <ion-img src="../../../assets/Enter OTP-pana.png" style="width: 300px;"></ion-img>
+      </div>
+      <h2>Otp Verification</h2>
+      <p style="width: 60%; margin: 0 auto;">
+        Please enter the OTP sent on your registered phone number.
+      </p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+     <ion-input class="x" #otp1 required="true" maxLength="1" [(ngModel)] ="OTP.first" (keyup)="otpController($event,otp2,'',1)">
+     </ion-input>
+     <ion-input class="x" #otp2 required="true" maxLength="1" [(ngModel)]="OTP.second" (keyup)="otpController($event,otp3,otp1,2)">
+     </ion-input>
+     <ion-input class="x" #otp3 required="true" maxLength="1" [(ngModel)]="OTP.third"  (keyup)="otpController($event,otp4,otp2,3)">
+     </ion-input>
+
+     <ion-input class="x" #otp4 required="true" maxLength="1" [(ngModel)]="OTP.forth"  (keyup)="otpController($event,otp5,otp3,4)">
+    </ion-input>
+
+    <ion-input class="x" #otp5  required="true" maxLength="1" [(ngModel)]="OTP.fifth" (keyup)="otpController($event,otp6,otp4,5)">
+    </ion-input>
+
+    <ion-input class="x" #otp6  required="true" maxLength="1" [(ngModel)]="OTP.sixth" (keyup)="otpController($event,'',otp5,6)">
+    </ion-input>
+
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-button class="login-btn" (click)="verifyotp()">Verify Otp</ion-button>
+      <!-- <a href="#" (click)="sendotp()" style="text-decoration: none;">Resend Otp</a> -->
+    </ion-col>
+
+  </ion-row>
+</ion-content>
+
+
+<ion-content class="ion-text-center" style="margin-top: 40%; padding: 10px;" *ngIf="showsection=='changepass'">
+  <form [formGroup]="changepassform" (ngSubmit)="changepassword()">
+
+  <ion-row>
+    <ion-col>
+      <h2>Enter New Password</h2>
+      <ion-item class="remove-pad-start ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">New Password</ion-label>
+        <ion-input type="password" formControlName="newpass"></ion-input>
+      </ion-item>
+
+      <ion-item class="remove-pad-start ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">ReEnter Password</ion-label>
+        <ion-input type="password" formControlName="renewpass"></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-button class="login-btn" [disabled]="!changepassform.valid" type="submit">Change Password</ion-button>
+    </ion-col>
+
+  </ion-row>
+  </form>
+</ion-content>

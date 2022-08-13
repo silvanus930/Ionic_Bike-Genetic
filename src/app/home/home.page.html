@@ -1,0 +1,135 @@
+<ion-header #header  class="ion-no-border">
+  <ion-toolbar #tbar class="no-bg ion-padding">
+    <ion-menu-toggle slot="start" style="font-size: 30px;">
+      <ion-icon name="menu-outline"  class="menu-icon" id="main"></ion-icon>
+    </ion-menu-toggle>
+    <ion-title>Welcome {{logineduser.userName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  scrollEvents="true" (ionScroll)='onContentScroll($event)'>
+
+  <div class="home-bg">
+
+  </div>
+
+  <div id="ion-page">
+
+    <ion-menu side="start" menuId="first" contentId="main">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item class="item-no-border" [routerLink]="['/home']">Home</ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item class="item-no-border" [routerLink]="['/aboutus']">About</ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item class="item-no-border" [routerLink]="['/faqs']">Faq's</ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item class="item-no-border"  [routerLink]="['/logout']">Logout</ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <div class="ion-padding">
+      <ion-slides pager="true" class="slider" [options]="silderoptions">
+        <ion-slide>
+          <img src="http://43.204.19.133/assets/media/main-slider/1.jpg">
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div class="ion-padding">
+      <h4>Sell Bike In Simple Steps</h4>
+    </div>
+
+    <ion-grid class="simple-step-bike-sell">
+      <ion-row class="ion-text-center">
+        <ion-col>
+          <img src="http://43.204.19.133/assets/images/1.jpg">
+          <label>Bike Info</label>
+        </ion-col>
+        <ion-col>
+          <img src="http://43.204.19.133/assets/images/2.jpg">
+          <label>Free Inspection</label>
+        </ion-col>
+        <ion-col>
+          <img src="http://43.204.19.133/assets/images/3.jpg">
+          <label>List Your Bike</label>
+        </ion-col>
+        <ion-col>
+          <img src="http://43.204.19.133/assets/images/instant-payment.jpg">
+          <label>Payment</label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button type="button" class="sellbike-btn" [routerLink]="['/selectcity']">Sell Bike</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div class="ion-padding">
+      <h4>Testimonials</h4>
+    </div>
+
+    <ion-slides pager="true" class="ion-padding" [options]="testiOpts">
+      <ion-slide>
+        <ion-text class="ion-padding">
+          “I sold my Honda Dio to Genie Bikez. I put a classified ad on Genie Bikez to sell my Bikez. Inspection took place within a day, and the Bikez was taken into their inventory. They quoted a reasonable fee, and I was satisfied. I gave them half an hour to pick up my Bikez because I had an immediate flight. In less than an hour, EMPLOYEE NAME arrived and completed the necessary paperwork. I strongly advise using Genie Bikez to sell your Bikez because it was simple and effortless.”
+        </ion-text>
+      </ion-slide>
+      <ion-slide>
+        <ion-text class="ion-padding">
+          “I sold my Honda CB hornet to Genie Bikez. After selling my Bikez to them I got a decent value for the Bikez and their service was also very good. I got the payment within 24 hours. I was very worried about how I was going to go about selling my Bikez because I have no  expertise in this area but then a friend suggested Genie Bikez to me and I couldn't be more thankful. They sold my Bikez within two days and I also received the fair value which was very surprising to me. Commendable service, must try.”
+        </ion-text>
+      </ion-slide>
+      <ion-slide>
+        <ion-text class="ion-padding">
+          “I sold my KTM RC 125 to Genie Bikez. I was browsing the internet looking for reliable and trustworthy websites to sell my Bikez which can also offer me a fair price and then I came across Genie Bikez. I just posted the details and then they came for an inspection, offered me a fair value and listed my Bikez. My Bikez was sold within a week And the money was credited to my account within a day. I had a fulfilling experience with them and would recommend selling your used Bikez to Genie Bikez.
+        </ion-text>
+      </ion-slide>
+    </ion-slides>
+
+
+  </div>
+
+
+
+
+
+</ion-content>
+<ion-toolbar>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule" [routerLink]="['/home']">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="speakers"  [routerLink]="['/selectcity']">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <ion-label>Post Bike</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="map" [routerLink]="['/faqs']">
+      <ion-icon name="list-outline"></ion-icon>
+      <ion-label>Faq's</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="about" [routerLink]="['/aboutus']">
+      <ion-icon name="information-circle"></ion-icon>
+      <ion-label>About</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
+</ion-toolbar>

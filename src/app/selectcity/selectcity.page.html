@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Select City</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row class="ion-justify-content-around">
+      <ion-col size="4" *ngFor="let city of cities"  class="ion-text-center" style="border:1px solid #cecece;">
+        <a href="#" [routerLink] = "['/bikeinfo', city.cityid]">
+          <img [src]="city.cityicon">
+          <ion-label>{{city.cityname}}</ion-label>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

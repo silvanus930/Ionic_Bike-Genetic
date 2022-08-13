@@ -1,0 +1,62 @@
+.home-bg{
+  background-color: var(--ion-color-bikeorange);
+  width: 100%;
+  height: 25%;
+  position: absolute;
+  z-index: -5;
+}
+
+.no-bg{
+  --background:var(--ion-color-bikeorange);
+  --ion-box-shadow:none;
+}
+
+.menu-icon{
+  color:#fff;
+}
+ion-title{
+  --color:#fff;
+  font-size: 16px;
+}
+
+
+.slider ion-slide{
+  background:#ebebeb;
+  height: 200px;
+}
+
+
+ion-icon{
+  color: #fff;
+}
+
+ion-tab-bar ion-icon{
+  color: var(--ion-color-bikeorange);
+}
+
+ion-tab-button ion-label{
+  color:var(--ion-color-bikeorange);
+}
+
+.simple-step-bike-sell{
+  font-size: 12px;
+}
+
+
+.sellbike-btn{
+  --background: var(--ion-color-bikeorange);
+  --border-radius: 100px;
+  --padding: 16px 32px;
+  color: #E8E8E8;
+  width:100%;
+}
+
+
+ion-menu ion-toolbar{
+
+
+    --background: var(--ion-color-bikeorange);
+
+
+
+}

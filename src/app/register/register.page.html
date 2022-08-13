@@ -1,0 +1,81 @@
+<div id="sign-in-button"></div>
+<ion-content class="ion-padding" *ngIf="!shootpseection">
+  <div class="ion-text-center page-heading">
+    <div style="align-items: center; display: grid; justify-items: center;">
+      <ion-img src="../../assets/logo.png" style="width: 130px;"></ion-img>
+    </div>
+    <h1>Create Account</h1>
+  </div>
+
+  <form [formGroup]="registerform" (ngSubmit)="doRegister()">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-input placeholder="Enter Name" class="border-form" formControlName="username" type="text" name="title"></ion-input>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;">
+        <ion-input placeholder="Enter Email" class="border-form" formControlName="useremail" type="email" name="pass"></ion-input>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;">
+        <ion-input placeholder="Enter Phone" class="border-form" formControlName="userphone" type="phone" name="pass"></ion-input>
+      </ion-col>
+      <ion-col size="12" style="margin-top: 10px;">
+        <ion-input placeholder="Enter Password" class="border-form" formControlName="userpassword" type="password" name="pass"></ion-input>
+      </ion-col>
+      <ion-col size="12">
+        <ion-button class="login-btn" type="submit" [disabled]="!registerform.value.username || !registerform.value.useremail || !registerform.value.userphone || !registerform.value.userpassword">Create Account</ion-button>
+      </ion-col>
+
+      <ion-col size="12" class="ion-text-center">
+        <a href="#" [routerLink]="['/login']" style="text-decoration: none; color:#146bb4;">Already have a account?</a>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</form>
+
+</ion-content>
+
+<ion-content class="ion-text-center" style="margin-top: 40%;" *ngIf="shootpseection">
+
+  <ion-row>
+    <ion-col>
+      <div style="display: grid; align-items: center; justify-items: center;">
+        <ion-img src="../../../assets/Enter OTP-pana.png" style="width: 300px;"></ion-img>
+      </div>
+      <h2>Otp Verification</h2>
+      <p style="width: 60%; margin: 0 auto;">
+        Please enter the OTP sent on your registered phone number.
+      </p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+     <ion-input class="x" #otp1 required="true" maxLength="1" [(ngModel)] ="OTP.first" (keyup)="otpController($event,otp2,'',1)">
+     </ion-input>
+     <ion-input class="x" #otp2 required="true" maxLength="1" [(ngModel)]="OTP.second" (keyup)="otpController($event,otp3,otp1,2)">
+     </ion-input>
+     <ion-input class="x" #otp3 required="true" maxLength="1" [(ngModel)]="OTP.third"  (keyup)="otpController($event,otp4,otp2,3)">
+     </ion-input>
+
+     <ion-input class="x" #otp4 required="true" maxLength="1" [(ngModel)]="OTP.forth"  (keyup)="otpController($event,otp5,otp3,4)">
+    </ion-input>
+
+    <ion-input class="x" #otp5  required="true" maxLength="1" [(ngModel)]="OTP.fifth" (keyup)="otpController($event,otp6,otp4,5)">
+    </ion-input>
+
+    <ion-input class="x" #otp6  required="true" maxLength="1" [(ngModel)]="OTP.sixth" (keyup)="otpController($event,'',otp5,6)">
+    </ion-input>
+
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-button class="login-btn" (click)="verifyotp()">Verify Otp</ion-button>
+    </ion-col>
+    <ion-col size="12">
+      <a href="#" (click)="doRegister()">Resend Otp</a>
+    </ion-col>
+
+  </ion-row>
+</ion-content>

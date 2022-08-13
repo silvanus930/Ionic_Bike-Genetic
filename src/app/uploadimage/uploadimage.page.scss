@@ -1,0 +1,26 @@
+.img-holder{
+  border: 1px solid red;
+    width: 90%;
+    height: 98px;
+    display: block;
+    text-align: center;
+    padding-top: 20px;
+    background-size:cover;
+
+    // background-size: 100px 100px;
+    // background-repeat: no-repeat;
+    // background-position: center;
+}
+
+ion-toolbar{
+  --color:var(--ion-color-bikeorange);
+  /* */
+}
+
+.sellbike-btn{
+  --background: var(--ion-color-bikeorange);
+  --border-radius: 100px;
+  --padding: 16px 32px;
+  color: #E8E8E8;
+  width:60%;
+}

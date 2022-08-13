@@ -1,0 +1,135 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Bike Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="bikeform">
+
+    <!-- f e f-->
+    <div class="step1" #stepone>
+      <ion-grid>
+        <ion-row size="12">
+            <ion-label></ion-label>
+            <ion-select formControlName="fbrand" placeholder="Vehicle Brand"  interface="action-sheet" (ionChange)="getVariants()">
+              <ion-select-option *ngFor="let brand of brandslists" [value]="brand.vb_id">{{brand.vb_name}}</ion-select-option>
+            </ion-select>
+        </ion-row>
+
+        <ion-row size="12" style="margin: 15px 0;">
+            <ion-select formControlName="vehicle_id" interface="action-sheet" placeholder="Vehicle Variants">
+              <ion-select-option *ngFor="let variant of bikevariants" [value]="variant.v_id">{{variant.v_models}}</ion-select-option>
+            </ion-select>
+        </ion-row>
+
+        <ion-row size="12">
+            <ion-select formControlName="vehicle_model" interface="action-sheet" placeholder="Year">
+              <ion-select-option *ngFor="let years of modelyears" [value]="years">{{years}}</ion-select-option>
+            </ion-select>
+        </ion-row>
+
+
+        <ion-row size="12" style="margin: 15px 0;">
+            <ion-input formControlName="vehicle_regno" type="text" maxlength="12" placeholder="Registration No"></ion-input>
+        </ion-row>
+
+        <ion-row size="12" style="margin: 15px 0;">
+          <ion-input type="text"   placeholder="Km Driven"></ion-input>
+        </ion-row>
+
+        <ion-row size="12">
+          <ion-select formControlName="no_owners" interface="action-sheet" placeholder="No Owner">
+            <ion-select-option *ngFor="let owner of [1,2,3,4]" [value]="owner">{{owner}}</ion-select-option>
+          </ion-select>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>Insurance Lapse</ion-label>
+              <ion-toggle formControlName="insurance_lapse"></ion-toggle>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>Loan</ion-label>
+              <ion-toggle color="danger" formControlName="isfinance"></ion-toggle>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col offset="6" class="ion-text-right">
+            <ion-button class="next-btn" [disabled]="!bikeform.value.fbrand || !bikeform.value.vehicle_id || !bikeform.value.vehicle_model || !bikeform.value.no_owners"  (click)="gostep2()">Next</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </div>
+
+    <div class="step2" #step2>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-input type="number" formControlName="expect_price" placeholder="Expectation Price"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row  style="margin: 15px 0;">
+          <ion-col>
+
+                <ion-input (click)="showdatepickerfun()" [value]="myDate"  type="text" placeholder="Pickup Date"></ion-input>
+
+              <ion-popover [isOpen]="datepickershow">
+                <ng-template>
+                  <ion-datetime displayFormat="DD/MM/YYYY" formControlName="postpickdate" presentation="date" (ionChange)="setdate(this)"></ion-datetime>
+                </ng-template>
+              </ion-popover>
+          </ion-col>
+        </ion-row>
+
+        <ion-row  style="margin: 15px 0;">
+          <ion-col>
+            <ion-select value="notifications" formControlName="postpicktime" interface="action-sheet" placeholder="Pickup Time">
+              <ion-select-option>9am - 11am</ion-select-option>
+              <ion-select-option>12pm - 2pm</ion-select-option>
+              <ion-select-option>2pm - 4pm</ion-select-option>
+              <ion-select-option>4pm - 7pm</ion-select-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row  style="margin: 15px 0;">
+          <ion-col>
+            <ion-input type="text" formControlName="postpickaddrss" placeholder="Address"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row  style="margin: 15px 0;">
+          <ion-col>
+            <ion-input type="tel" formControlName="postpickaltphone" placeholder="Alternate Phone"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-col>
+          <ion-item>
+            <ion-label>Challans</ion-label>
+            <ion-toggle color="danger" formControlName="challans" value="true"></ion-toggle>
+          </ion-item>
+        </ion-col>
+
+        <ion-row>
+          <ion-col offset="6" class="ion-text-right">
+            <ion-button class="next-btn" [disabled]="!bikeform.value.expect_price"  (click)="openimgmodal()">Upload Image</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </div>
+
+  </form>
+</ion-content>

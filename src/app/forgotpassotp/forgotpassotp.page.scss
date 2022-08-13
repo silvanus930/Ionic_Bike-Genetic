@@ -1,0 +1,17 @@
+.x{
+  display:inline-block;
+  width:50px;
+  height:50px;
+  margin:5px;
+  // --background:#efefef;
+  --padding-start:7px;
+  border-bottom: 2px solid #cecece;
+    // box-shadow: 0 0 2px #d2d2d2;
+  }
+  .login-btn{
+    --background: #EF2A24;
+    --border-radius: 100px;
+    --padding: 20px 32px;
+    color: #E8E8E8;
+    width:90%;
+  }

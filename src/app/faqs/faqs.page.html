@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Bike Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <iframe style="width: 100%;  height: 100%;" src="http://43.204.19.133/faq"></iframe>
+</ion-content>
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="schedule" [routerLink]="['/home']">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="speakers"  [routerLink]="['/selectcity']">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <ion-label>Post Bike</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="map" [routerLink]="['/faqs']">
+        <ion-icon name="list-outline"></ion-icon>
+        <ion-label>Faq's</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+  </ion-toolbar>

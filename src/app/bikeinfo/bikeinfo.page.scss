@@ -1,0 +1,31 @@
+ion-toolbar{
+  --color:var(--ion-color-bikeorange);
+  /* */
+}
+
+
+ion-select,ion-input[type='text'],[type="date"],[type="tel"],[type="number"]{
+  height: 50px;
+  background: #F6F6F6;
+  border: 1px solid #E8E8E8;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.next-btn{
+  --background: #EF2A24;
+  --border-radius: 100px;
+  --padding: 16px 32px;
+  color: #E8E8E8;
+}
+
+.step1{
+  transition: all 700ms ease-in-out;
+  opacity: 1;
+  //
+}
+
+.step2{
+  display: none;
+  opacity: 0;
+}
