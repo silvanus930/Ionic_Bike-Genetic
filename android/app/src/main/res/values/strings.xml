@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">GenieBikez</string>
+    <string name="title_activity_main">GenieBikez</string>
+    <string name="package_name">com.geniebikez.app</string>
+    <string name="custom_url_scheme">com.geniebikez.app</string>
+</resources>
