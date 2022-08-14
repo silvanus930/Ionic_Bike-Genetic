@@ -72,9 +72,9 @@ export class UploadimagePage implements OnInit {
 }
 
   cropFile(file)  {
-        this.imageCompress.compressFile(file, orientation, 50, 50) // 50% ratio, 50% quality
+        return this.imageCompress.compressFile(file, orientation, 50, 50, 120, 80);
+        //return this.imageCompress.compressFile(file, orientation, 50, 50, 1280, 800)
   }
-
   
   selectFile(event,imgside) {
     let selectedFiles = event.target.files;
@@ -117,8 +117,7 @@ export class UploadimagePage implements OnInit {
       reader.readAsDataURL(file);
     }
 
-    this.cropFile(file);
-    this.uploadFile(file,imgside);
+    this.uploadFile(this.cropFile(file), imgside);
     //f e
   }
 
