@@ -4,7 +4,7 @@ import { VehicleService } from '../services/vehicle.service';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
-import {NgxImageCompressService} from "ngx-image-compress";
+import {DataUrl, DOC_ORIENTATION, NgxImageCompressService, UploadResponse,} from 'ngx-image-compress';
 
 @Component({
   selector: 'app-uploadimage',
@@ -31,16 +31,11 @@ export class UploadimagePage implements OnInit {
     private modalcontroller : ModalController,
     private platform: Platform,
     private imageCompress: NgxImageCompressService
-  ) {
+  ) { }
 
-  }
+  ngOnInit() { }
 
-  ngOnInit() {
-
-  }
-
-
-  uploadFile(file,imgside) {
+  uploadFile(file, imgside) {
 
     const myinstance = this;
 
@@ -64,19 +59,36 @@ export class UploadimagePage implements OnInit {
               return false;
           }
 
-          myinstance.awsfileupload.push({img:data.Location,imgtype:imgside});
+          myinstance.awsfileupload.push({img:data.Location, imgtype:imgside});
           console.log('Successfully uploaded file.', data);
           return true;
       });
 
-}
+  }
 
+
+  uploadAndResize() {
+    return this.imageCompress.uploadFile().then(({image, orientation}: UploadResponse) => {
+      
+        this.imageCompress.compressFile(image, orientation, 50, 50, 1280, 800).then(
+            (result: DataUrl) => {
+              //this.imgResultAfterResize = result;
+              console.warn('Size in bytes is now:', this.imageCompress.byteCount(result)
+              );
+            }
+          );
+      });
+  }
+
+  
   cropFile(file)  {
-        return this.imageCompress.compressFile(file, orientation, 50, 50, 120, 80);
-        //return this.imageCompress.compressFile(file, orientation, 50, 50, 1280, 800)
+        //return this.imageCompress.compressFile(file, orientation, 50, 50, 120, 80);
+        return this.imageCompress.compressFile(file, orientation, 50, 50, 1280, 800);
   }
   
-  selectFile(event,imgside) {
+ 
+  selectFile(event, imgside) {
+  
     let selectedFiles = event.target.files;
     const file = selectedFiles.item(0);
     this.fileselected++;
@@ -117,34 +129,33 @@ export class UploadimagePage implements OnInit {
       reader.readAsDataURL(file);
     }
 
+    // file->
     this.uploadFile(this.cropFile(file), imgside);
-    //f e
+
+    //this.uploadFile(file, imgside);
   }
 
-   postBikeDetails(){
+  postBikeDetails(){
     var usertype_id =JSON.parse(window.localStorage.getItem("user")).userTypes;
     this.bikeinfo.usertype = usertype_id;
 
     this.bikeinfo.postimage = this.awsfileupload;
-    this.vehicleService.postVehicle(this.bikeinfo)
-    .subscribe(async (data : any)=>{
+    this.vehicleService.postVehicle(this.bikeinfo).subscribe(async (data : any)=>{
       this.modalcontroller.dismiss();
-      this.router.navigate(['successfullypost',data.message]);
-      // const alert = await this.alertController.create({
-      //   header: 'Success',
-      //   message: 'Posted Successfully',
-      //   buttons: [{
-      //     text:'Ok',
-      //     handler:()=>{
-      //       this.modalcontroller.dismiss();
-
-      //     }
-
-      //   }
-      //   ]
-      // });
-
-      // await alert.present();
+      this.router.navigate(['successfullypost', data.message]);
+      
+      const alert = await this.alertController.create({
+          header: 'Success',
+          message: 'Posted Successfully',
+          buttons: [{
+            text:'Ok',
+            handler:()=>{
+              this.modalcontroller.dismiss();
+            }
+          }
+          ]
+        });
+        await alert.present();
     });
   }
 
